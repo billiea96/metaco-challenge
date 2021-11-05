@@ -66,7 +66,25 @@ tournamentResultRouter.post(
 tournamentResultRouter.get(
   '/leaderboard',
   asyncHandler(async (req, res) => {
+    const { filter = 'all' } = req.query;
+    const date = new Date();
+    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    const lastWeek = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate() - 7,
+    );
+    const dateFilter =
+      filter === 'month'
+        ? { createdAt: { $gte: firstDay, $lt: lastDay } }
+        : filter === 'week'
+        ? { createdAt: { $gte: lastWeek, $lt: date } }
+        : {};
     const dataLeaderBoard = await TournamentResult.aggregate([
+      {
+        $match: { ...dateFilter },
+      },
       {
         $lookup: {
           from: 'teams',
@@ -105,6 +123,9 @@ tournamentResultRouter.get(
       },
       {
         $sort: { totalPoint: -1, teamName: 1 },
+      },
+      {
+        $limit: 20,
       },
     ]);
 

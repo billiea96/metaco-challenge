@@ -6,6 +6,7 @@ import seedingRouter from './routers/seedingRouter.js';
 import tournamentRouter from './routers/tournamentRouter.js';
 import tournamentResultRouter from './routers/tournamentResultRouter.js';
 import userRouter from './routers/userRouter.js';
+import teamRouter from './routers/teamRouter.js';
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;
@@ -23,6 +24,7 @@ app.use('/api/seeding', seedingRouter);
 app.use('/api/tournaments', tournamentRouter);
 app.use('/api/tournament-results', tournamentResultRouter);
 app.use('/api/users', userRouter);
+app.use('/api/teams', teamRouter);
 
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, '/frontend/build')));

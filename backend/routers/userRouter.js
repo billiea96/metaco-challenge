@@ -5,13 +5,29 @@ import User from '../models/userModel.js';
 const userRouter = express.Router();
 
 userRouter.get(
-  '/ranking',
+  '/',
   asyncHandler(async (req, res) => {
-    const explorer = await User.find({ coin: { $gt: 0 } }).sort({
-      coin: -1,
-      name: 1,
-    });
-    res.send(explorer);
+    const page = Number(req.query.page) || 1;
+    const pageSize = Number(req.query.pageSize) || 12;
+    const filter = req.query.keyword
+      ? {
+          $or: [
+            {
+              name: { $regex: req.query.keyword, $options: 'i' },
+              email: { $regex: req.query.keyword, $options: 'i' },
+            },
+          ],
+        }
+      : {};
+    const count = await User.count({ ...filter });
+    const users = await User.find({ ...filter })
+      .sort({
+        coin: -1,
+        name: 1,
+      })
+      .skip((page - 1) * pageSize)
+      .limit(pageSize);
+    res.send({ users, page, pages: Math.ceil(count / pageSize) });
   }),
 );
 

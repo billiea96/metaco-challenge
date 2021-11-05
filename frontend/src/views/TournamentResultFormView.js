@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Col,
   Container,
@@ -30,7 +30,7 @@ export default function TournamentResultFormView() {
         setTeam('');
       });
     }
-  }, [tournament]);
+  }, [tournament, tournamentList]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -74,7 +74,9 @@ export default function TournamentResultFormView() {
               >
                 <option>-- Select Tournament --</option>
                 {tournamentList.map((value) => (
-                  <option value={value.id}>{value.title}</option>
+                  <option value={value.id} key={value.id}>
+                    {value.title}
+                  </option>
                 ))}
               </Form.Select>
             </Form.Group>
@@ -88,7 +90,9 @@ export default function TournamentResultFormView() {
               >
                 <option>-- Select Team --</option>
                 {teamList.map((team) => (
-                  <option value={team.id}>{team.name}</option>
+                  <option value={team.id} key={team.id}>
+                    {team.name}
+                  </option>
                 ))}
               </Form.Select>
             </Form.Group>
@@ -101,7 +105,9 @@ export default function TournamentResultFormView() {
               >
                 <option>-- Select Position --</option>
                 {[...new Array(teamList.length).keys()].map((value) => (
-                  <option value={value + 1}>{value + 1}</option>
+                  <option value={value + 1} key={value}>
+                    {value + 1}
+                  </option>
                 ))}
               </Form.Select>
             </Form.Group>
