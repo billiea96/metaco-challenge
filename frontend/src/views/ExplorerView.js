@@ -25,7 +25,6 @@ export default function ExplorerView() {
   const [type, setType] = useState('team');
   const defaultImgTeam = '/images/unknown.png';
   const defaultImgUser = '/images/user-unknown.png';
-  const pageNum = 5;
   useEffect(() => {
     (async () => {
       try {
