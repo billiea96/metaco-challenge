@@ -50,7 +50,7 @@ export default function ExplorerView() {
   return (
     <Container style={{ margin: '1rem' }}>
       <Row>
-        <Col md={2}>
+        <Col md={3}>
           <Form.Select
             aria-label="Default select example"
             value={pageSize}
@@ -61,7 +61,7 @@ export default function ExplorerView() {
             <option value="18">Tampilkan: 18 Data</option>
           </Form.Select>
         </Col>
-        <Col md={2}>
+        <Col md={3}>
           <Form.Control
             type="text"
             placeholder="Search..."
