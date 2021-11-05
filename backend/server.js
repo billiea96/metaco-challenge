@@ -3,6 +3,9 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import path from 'path';
 import seedingRouter from './routers/seedingRouter.js';
+import tournamentRouter from './routers/tournamentRouter.js';
+import tournamentResultRouter from './routers/tournamentResultRouter.js';
+import userRouter from './routers/userRouter.js';
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;
@@ -17,6 +20,9 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/metaco-test', {
 
 // API Route
 app.use('/api/seeding', seedingRouter);
+app.use('/api/tournaments', tournamentRouter);
+app.use('/api/tournament-results', tournamentResultRouter);
+app.use('/api/users', userRouter);
 
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, '/frontend/build')));

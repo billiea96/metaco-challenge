@@ -42,6 +42,7 @@ tournamentResultSchema.virtual('tournament', {
   justOne: true,
 });
 
+tournamentResultSchema.index({ teamId: 1, tournamentId: 1 }, { unique: true });
 const TournamentResult = mongoose.model(
   'TournamenResult',
   tournamentResultSchema,

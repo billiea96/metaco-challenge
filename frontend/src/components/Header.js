@@ -12,7 +12,7 @@ export default function Header() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <LinkContainer to="/">
+            <LinkContainer to="/tournament-result">
               <Nav.Link>Tournament Result</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/leaderboard">

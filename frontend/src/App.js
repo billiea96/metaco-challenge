@@ -9,6 +9,10 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={TournamentResultFormView}></Route>
+        <Route
+          path="/tournament-result"
+          component={TournamentResultFormView}
+        ></Route>
         <Route path="/leaderboard" component={TournamentResultFormView}></Route>
         <Route path="/explorer" component={TournamentResultFormView}></Route>
       </Switch>
