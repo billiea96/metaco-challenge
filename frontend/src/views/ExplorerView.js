@@ -106,7 +106,7 @@ export default function ExplorerView() {
       <Row className="justify-content-md-center">
         {type === 'team' &&
           teams.map((team) => (
-            <Col md={2} key={team._id}>
+            <Col md={2} key={team._id} style={{ margin: '1rem' }}>
               <Card
                 style={{ width: '12rem', margin: '1rem' }}
                 className="text-center"
